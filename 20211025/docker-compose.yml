@@ -1,0 +1,16 @@
+version: '3' # composeファイルのバーション指定
+services:
+  app: # service名
+    build: . # ビルドに使用するDockerfileがあるディレクトリ指定
+    tty: true # コンテナの起動永続化
+    volumes:
+      - .:/go/src/work # マウントディレクトリ指定
+  # postgres
+  db:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ddd_on_golang
+      POSTGRES_DB: ddd_on_golang
+    ports:
+      - 5432:5432
